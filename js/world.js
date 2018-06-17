@@ -87,10 +87,8 @@ function warriorWorldHandling(whichWarrior) {
 	    console.log(whichWarrior.name + " WINS!");
 	    loadLevel(levelOne);
 	} else if (tileHere != WORLD_ROAD) {
-	    // lose speed on collision with wall
-	    whichWarrior.x -= Math.cos(whichWarrior.ang) * whichWarrior.speed;
-	    whichWarrior.y -= Math.sin(whichWarrior.ang) * whichWarrior.speed;
-	    whichWarrior.speed *= -0.5;
+	    whichWarrior.x = whichWarrior.prevX;
+	    whichWarrior.y = whichWarrior.prevY;
 	}
     }
 }

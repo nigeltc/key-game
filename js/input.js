@@ -13,19 +13,19 @@ const KEY_D = 68;
 
 function keySet(evt, whichWarrior, setTo) {
     if (evt.keyCode == whichWarrior.controlKeyLeft) {
-	whichWarrior.keyHeldTurnLeft = setTo;
+	whichWarrior.keyHeldLeft = setTo;
     }
 
     if (evt.keyCode == whichWarrior.controlKeyRight) {
-	whichWarrior.keyHeldTurnRight = setTo;
+	whichWarrior.keyHeldRight = setTo;
     }
 
     if (evt.keyCode == whichWarrior.controlKeyUp) {
-	whichWarrior.keyHeldGas = setTo;
+	whichWarrior.keyHeldUp = setTo;
     }
 
     if (evt.keyCode == whichWarrior.controlKeyDown) {
-	whichWarrior.keyHeldReverse = setTo;
+	whichWarrior.keyHeldDown = setTo;
     }
 
     //evt.preventDefault();
