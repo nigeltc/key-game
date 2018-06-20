@@ -7,6 +7,7 @@ function Warrior() {
     this.speed = 5;
     this.img;
     this.name = "Unknown Warrior";
+    this.keys = 0;
 
     this.keyHeldUp = false;
     this.keyHeldRight = false;
@@ -28,6 +29,7 @@ function Warrior() {
     this.reset = function(whichImage, warriorName) {
 	this.img = whichImage;
 	this.name = warriorName;
+	this.keys = 0;
 	for(var j=0; j<worldRows; j++) {
 	    for(var i=0; i<worldColumns; i++) {
 		var idx = rowColToArrayIndex(i, j);
@@ -62,14 +64,23 @@ function Warrior() {
 	}
 	console.log("(" + this.x + "," + this.y + ") -> (" + nextX + "," + nextY + ")");
 
-	var walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY);
-	console.log("tile=" + walkIntoTileIndex);
-	if(walkIntoTileIndex == WORLD_GOAL) {
+	var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
+	var walkIntoTileType = getTileTypeAtPixelCoord(nextX, nextY);
+	console.log("tile=" + walkIntoTileType);
+	if(walkIntoTileType == WORLD_GOAL) {
 	    console.log(this.name + " WINS!");
 	    loadLevel(levelOne);
-	} else if(walkIntoTileIndex == WORLD_GROUND) {
+	} else if(walkIntoTileType == WORLD_GROUND) {
 	    this.x = nextX;
 	    this.y = nextY;
+	} else if (walkIntoTileType == WORLD_DOOR) {
+	    if (this.keys > 0) {
+		this.keys -= 1;
+		worldGrid[walkIntoTileIndex] = WORLD_GROUND;
+	    }
+	} else if (walkIntoTileType == WORLD_KEY) {
+	    this.keys += 1;
+	    worldGrid[walkIntoTileIndex] = WORLD_GROUND;
 	}
     }
 

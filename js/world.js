@@ -6,25 +6,25 @@ const worldGap = 2;
 const worldColumns = 16;
 const worldRows = 12;
 //              1  2  3  4  5  6  7  8  9  0  1  2  3  4  5  6
-var levelOne = [4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		4, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1,
-		1, 0, 0, 0, 1, 1, 1, 4, 4, 4, 4, 1, 1, 0, 0, 1,
-		1, 0, 0, 1, 1, 0, 0, 1, 4, 4, 1, 1, 0, 0, 0, 1,
-		1, 0, 0, 1, 0, 0, 0, 0, 1, 4, 1, 0, 0, 0, 0, 1,
-		1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 1,
-		1, 0, 0, 1, 0, 0, 5, 0, 0, 0, 1, 0, 0, 1, 0, 1,
-		1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 5, 0, 0, 1, 0, 1,
-		1, 0, 2, 1, 3, 3, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+var levelOne =  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5, 0, 1, 1, 1, 1,
+		 1, 0, 4, 0, 4, 0, 1, 0, 2, 0, 1, 0, 1, 4, 4, 1,
+		 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5, 1, 1,
+		 1, 1, 1, 5, 1, 1, 1, 0, 4, 0, 1, 0, 0, 0, 1, 1,
+		 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 1, 1,
+		 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1,
+		 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 4, 0, 1, 1,
+		 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1,
+		 1, 0, 5, 0, 5, 0, 5, 0, 3, 0, 1, 1, 1, 1, 1, 1,
+		 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+		 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 var worldGrid = [];
 const WORLD_GROUND = 0;
 const WORLD_WALL = 1;
 const WORLD_PLAYER_START = 2;
 const WORLD_GOAL = 3;
-const WORLD_DOOR = 4;
-const WORLD_KEY = 5;
+const WORLD_KEY = 4;
+const WORLD_DOOR = 5;
 
 function isObstacleAtColRow(col, row) {
     if ((col >= 0) &&
@@ -100,3 +100,17 @@ function getTileTypeAtPixelCoord(x, y) {
     return WORLD_WALL;
 }
 
+function getTileIndexAtPixelCoord(x, y) {
+    var warriorWorldCol = Math.floor(x / worldWidth);
+    var warriorWorldRow = Math.floor(y / worldHeight);
+    var worldIndexUnderWarrior = rowColToArrayIndex(warriorWorldCol, warriorWorldRow);
+
+    if((warriorWorldCol >= 0) &&
+       (warriorWorldCol < worldColumns) &&
+       (warriorWorldRow >= 0) &&
+       (warriorWorldRow < worldRows)) {
+	return worldIndexUnderWarrior;
+    }
+
+    return undefined;
+}
