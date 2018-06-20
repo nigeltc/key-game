@@ -74,22 +74,20 @@ function rowColToArrayIndex(col, row) {
     return worldColumns * row + col;
 }
 
-function warriorWorldHandling(whichWarrior) {
-    var warriorWorldCol = Math.floor(whichWarrior.x / worldWidth);
-    var warriorWorldRow = Math.floor(whichWarrior.y / worldHeight);
+function getTileTypeAtPixelCoord(x, y) {
+    var warriorWorldCol = Math.floor(x / worldWidth);
+    var warriorWorldRow = Math.floor(y / worldHeight);
     var worldIndexUnderWarrior = rowColToArrayIndex(warriorWorldCol, warriorWorldRow);
-    if ((warriorWorldCol >= 0) &&
-	(warriorWorldCol < worldColumns) &&
-	(warriorWorldRow >= 0) &&
-	(warriorWorldRow < worldRows)) {
+
+    if((warriorWorldCol >= 0) &&
+       (warriorWorldCol < worldColumns) &&
+       (warriorWorldRow >= 0) &&
+       (warriorWorldRow < worldRows)) {
 	var tileHere = returnTileTypeAtColRow(warriorWorldCol, warriorWorldRow);
-	if (tileHere == WORLD_GOAL) {
-	    console.log(whichWarrior.name + " WINS!");
-	    loadLevel(levelOne);
-	} else if (tileHere != WORLD_GROUND) {
-	    whichWarrior.x = whichWarrior.prevX;
-	    whichWarrior.y = whichWarrior.prevY;
-	}
+	return tileHere;
     }
+
+    // outside the map, everything is wall
+    return WORLD_WALL;
 }
 

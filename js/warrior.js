@@ -46,22 +46,31 @@ function Warrior() {
     }
 
     this.move = function() {
-	this.prevX = this.x;
-	this.prevY = this.y;
+	var nextX = this.x;
+	var nextY = this.y;
 	if (this.keyHeldUp) {
-	    this.y -= this.speed;
+	    nextY -= this.speed;
 	}
 	if (this.keyHeldDown) {
-	    this.y += this.speed;
+	    nextY += this.speed;
 	}
 	if (this.keyHeldRight) {
-	    this.x += this.speed;
+	    nextX += this.speed;
 	}
 	if (this.keyHeldLeft) {
-	    this.x -= this.speed;
+	    nextX -= this.speed;
 	}
-	//console.log("x=" + this.x + ", y=" + this.y);
-	warriorWorldHandling(this);
+	console.log("(" + this.x + "," + this.y + ") -> (" + nextX + "," + nextY + ")");
+
+	var walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY);
+	console.log("tile=" + walkIntoTileIndex);
+	if(walkIntoTileIndex == WORLD_GOAL) {
+	    console.log(this.name + " WINS!");
+	    loadLevel(levelOne);
+	} else if(walkIntoTileIndex == WORLD_GROUND) {
+	    this.x = nextX;
+	    this.y = nextY;
+	}
     }
 
     this.draw = function() {
