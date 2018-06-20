@@ -23,7 +23,7 @@ function loadImageForWorldCode(worldCode, fileName) {
 function loadImages() {
     var imageList = [
 	{varName: warriorPic, fileName: "player1car.png"},
-	{worldType: WORLD_ROAD, fileName: "track_road.png"},
+	{worldType: WORLD_GROUND, fileName: "track_road.png"},
 	{worldType: WORLD_WALL, fileName: "track_wall.png"},
 	{worldType: WORLD_GOAL, fileName: "track_goal.png"},
 	{worldType: WORLD_TREE, fileName: "track_tree.png"},

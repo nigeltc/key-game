@@ -33,7 +33,7 @@ function Warrior() {
 		var idx = rowColToArrayIndex(i, j);
 		if ( worldGrid[idx] == WORLD_PLAYER_START ) {
 		    //console.log("row=" + j + ", col=" + i);
-		    worldGrid[idx] = WORLD_ROAD;
+		    worldGrid[idx] = WORLD_GROUND;
 		    this.ang = - Math.PI/2;
 		    this.x = (i * worldWidth) + (worldWidth / 2);
 		    this.y = (j * worldHeight) + (worldHeight / 2);

@@ -22,7 +22,7 @@ var levelOne = [4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
 		0, 3, 0, 0, 0, 0, 1, 4, 4, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 4];
 var worldGrid = [];
-const WORLD_ROAD = 0;
+const WORLD_GROUND = 0;
 const WORLD_WALL = 1;
 const WORLD_PLAYER_START = 2;
 const WORLD_GOAL = 3;
@@ -35,7 +35,7 @@ function isObstacleAtColRow(col, row) {
 	(row >= 0) &&
 	(row < worldRows)) {
 	var worldIndexUnderCoord = rowColToArrayIndex(col, row);
-	return worldGrid[worldIndexUnderCoord] != WORLD_ROAD;
+	return worldGrid[worldIndexUnderCoord] != WORLD_GROUND;
     } else {
 	return false;
     }
@@ -86,7 +86,7 @@ function warriorWorldHandling(whichWarrior) {
 	if (tileHere == WORLD_GOAL) {
 	    console.log(whichWarrior.name + " WINS!");
 	    loadLevel(levelOne);
-	} else if (tileHere != WORLD_ROAD) {
+	} else if (tileHere != WORLD_GROUND) {
 	    whichWarrior.x = whichWarrior.prevX;
 	    whichWarrior.y = whichWarrior.prevY;
 	}

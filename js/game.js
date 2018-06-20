@@ -43,9 +43,9 @@ function drawAll() {
     blueWarrior.draw();
     
     //colorText(mouseX + "," + mouseY, mouseX, mouseY, "yellow");
-    var mouseWorldCol = Math.floor(mouseX / worldWidth);
-    var mouseWorldRow = Math.floor(mouseY / worldHeight);
-    var worldIndexUnderMouse = rowColToArrayIndex(mouseWorldCol, mouseWorldRow);
-    colorText(mouseWorldCol + "," + mouseWorldRow + ":" + worldIndexUnderMouse, mouseX, mouseY, "yellow");
+    //var mouseWorldCol = Math.floor(mouseX / worldWidth);
+    //var mouseWorldRow = Math.floor(mouseY / worldHeight);
+    //var worldIndexUnderMouse = rowColToArrayIndex(mouseWorldCol, mouseWorldRow);
+    //colorText(mouseWorldCol + "," + mouseWorldRow + ":" + worldIndexUnderMouse, mouseX, mouseY, "yellow");
 }
 
