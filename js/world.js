@@ -50,6 +50,15 @@ function returnTileTypeAtColRow(col, row) {
     }
 }
 
+function tileTypeHasTransparency(tileType) {
+    if ((tileType == WORLD_DOOR) ||
+	(tileType == WORLD_KEY) ||
+	(tileType == WORLD_GOAL)) {
+	return true;
+    }
+    return false;
+}
+
 function drawWorlds() {
     var arrayIndex = 0;
     var drawTileX = 0;
@@ -58,6 +67,9 @@ function drawWorlds() {
 	for(var i=0; i<worldColumns; i++) {
 	    var tileKindHere = worldGrid[arrayIndex];
 	    var useImg = worldPics[tileKindHere];
+	    if (tileTypeHasTransparency(tileKindHere)) {
+		canvasContext.drawImage(worldPics[WORLD_GROUND], drawTileX, drawTileY);
+	    }
 	    canvasContext.drawImage(useImg, drawTileX, drawTileY);
 	    drawTileX += worldWidth;
 	    arrayIndex++;
