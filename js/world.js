@@ -23,8 +23,8 @@ const WORLD_GROUND = 0;
 const WORLD_WALL = 1;
 const WORLD_PLAYER_START = 2;
 const WORLD_GOAL = 3;
-const WORLD_TREE = 4;
-const WORLD_FLAG = 5;
+const WORLD_DOOR = 4;
+const WORLD_KEY = 5;
 
 function isObstacleAtColRow(col, row) {
     if ((col >= 0) &&
